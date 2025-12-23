@@ -1,12 +1,13 @@
 {
-  "name": "loneatkr-temp",
+  "name": "loneatkr",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "create-admin": "npx ts-node --compiler-options '{\"module\":\"CommonJS\"}' scripts/createAdmin.ts"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",
@@ -26,6 +27,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.1.1",
     "tailwindcss": "^4",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }
