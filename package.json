@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "create-admin": "npx ts-node --compiler-options '{\"module\":\"CommonJS\"}' scripts/createAdmin.ts"
+    "create-admin": "npx ts-node --compiler-options '{\"module\":\"CommonJS\"}' scripts/createAdmin.ts",
+    "seed": "npx ts-node --compiler-options '{\"module\":\"CommonJS\"}' scripts/seedData.ts"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",

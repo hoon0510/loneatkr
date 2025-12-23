@@ -16,10 +16,9 @@ declare global {
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
-if (!MONGODB_URI) {
-    throw new Error(
-        '환경 변수 MONGODB_URI가 설정되지 않았습니다. .env.local 파일을 확인하세요.'
-    );
+// 빌드 시점에서는 에러를 발생시키지 않음 (런타임에 확인)
+if (!MONGODB_URI && typeof window === 'undefined' && process.env.NODE_ENV !== 'production') {
+    console.warn('⚠️ MONGODB_URI 환경 변수가 설정되지 않았습니다.');
 }
 
 /**
@@ -58,6 +57,13 @@ export async function connectToDatabase(): Promise<typeof mongoose> {
         return cached.conn;
     }
 
+    // 런타임에 MONGODB_URI 확인
+    if (!MONGODB_URI) {
+        throw new Error(
+            '환경 변수 MONGODB_URI가 설정되지 않았습니다. .env.local 파일을 확인하세요.'
+        );
+    }
+
     // 연결 진행 중이면 해당 Promise 반환
     if (!cached.promise) {
         const opts: mongoose.ConnectOptions = {
@@ -65,7 +71,7 @@ export async function connectToDatabase(): Promise<typeof mongoose> {
         };
 
         cached.promise = mongoose
-            .connect(MONGODB_URI!, opts)
+            .connect(MONGODB_URI, opts)
             .then((mongoose) => {
                 console.log('✅ MongoDB 연결 성공');
                 return mongoose;
