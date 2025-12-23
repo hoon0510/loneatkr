@@ -55,7 +55,7 @@ export async function GET(request: NextRequest) {
         }
 
         // 정렬: 에디터 인증 먼저, 그 다음 최신순
-        const sort = { isEditorCertified: -1, createdAt: -1 };
+        const sort: { [key: string]: 1 | -1 } = { isEditorCertified: -1, createdAt: -1 };
 
         // 페이지네이션
         const skip = (page - 1) * limit;
