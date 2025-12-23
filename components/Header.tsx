@@ -4,10 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 
 /**
- * Header 컴포넌트
- * 
- * 로닛 플랫폼의 상단 네비게이션 바입니다.
- * 반응형 디자인으로 모바일에서는 햄버거 메뉴를 표시합니다.
+ * Header 컴포넌트 - 다크 테마
  */
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,7 +14,7 @@ export default function Header() {
     };
 
     return (
-        <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
+        <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
             <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
                     {/* 로고 */}
@@ -34,13 +31,13 @@ export default function Header() {
                     <div className="hidden md:flex items-center gap-8">
                         <Link
                             href="/"
-                            className="text-gray-600 hover:text-primary font-medium transition-colors"
+                            className="text-muted hover:text-primary font-medium transition-colors"
                         >
                             홈
                         </Link>
                         <Link
                             href="/about"
-                            className="text-gray-600 hover:text-primary font-medium transition-colors"
+                            className="text-muted hover:text-primary font-medium transition-colors"
                         >
                             소개
                         </Link>
@@ -49,7 +46,7 @@ export default function Header() {
                     {/* 모바일 햄버거 버튼 */}
                     <button
                         type="button"
-                        className="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
+                        className="md:hidden p-2 rounded-lg text-muted hover:bg-card transition-colors"
                         onClick={toggleMenu}
                         aria-expanded={isMenuOpen}
                         aria-label="메뉴 열기"
@@ -82,18 +79,18 @@ export default function Header() {
 
                 {/* 모바일 메뉴 */}
                 {isMenuOpen && (
-                    <div className="md:hidden py-4 border-t border-gray-100">
+                    <div className="md:hidden py-4 border-t border-border">
                         <div className="flex flex-col gap-4">
                             <Link
                                 href="/"
-                                className="text-gray-600 hover:text-primary font-medium transition-colors py-2"
+                                className="text-muted hover:text-primary font-medium transition-colors py-2"
                                 onClick={() => setIsMenuOpen(false)}
                             >
                                 홈
                             </Link>
                             <Link
                                 href="/about"
-                                className="text-gray-600 hover:text-primary font-medium transition-colors py-2"
+                                className="text-muted hover:text-primary font-medium transition-colors py-2"
                                 onClick={() => setIsMenuOpen(false)}
                             >
                                 소개

@@ -6,20 +6,14 @@ import { ChangeEvent } from 'react';
  * SearchBar Props
  */
 interface SearchBarProps {
-    /** 검색어 */
     value: string;
-    /** 검색어 변경 핸들러 */
     onChange: (value: string) => void;
-    /** 플레이스홀더 텍스트 */
     placeholder?: string;
-    /** 추가 CSS 클래스 */
     className?: string;
 }
 
 /**
- * SearchBar 컴포넌트
- * 
- * 가게 이름, 메뉴 등으로 검색할 수 있는 검색 입력 필드입니다.
+ * SearchBar 컴포넌트 - 다크 테마
  */
 export default function SearchBar({
     value,
@@ -40,7 +34,7 @@ export default function SearchBar({
             {/* 검색 아이콘 */}
             <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                 <svg
-                    className="w-5 h-5 text-gray-400"
+                    className="w-5 h-5 text-muted"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -61,7 +55,7 @@ export default function SearchBar({
                 value={value}
                 onChange={handleChange}
                 placeholder={placeholder}
-                className="w-full pl-12 pr-10 py-3 bg-white border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
+                className="w-full pl-12 pr-10 py-3 bg-card border border-border rounded-xl text-primary placeholder-muted focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
                 aria-label="검색"
             />
 
@@ -70,7 +64,7 @@ export default function SearchBar({
                 <button
                     type="button"
                     onClick={handleClear}
-                    className="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gray-600 transition-colors"
+                    className="absolute inset-y-0 right-0 pr-4 flex items-center text-muted hover:text-primary transition-colors"
                     aria-label="검색어 지우기"
                 >
                     <svg

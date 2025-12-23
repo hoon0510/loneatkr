@@ -11,7 +11,6 @@ interface RegionData {
 
 /**
  * 한국 주요 지역 데이터
- * 시/도별 시/군/구 목록
  */
 const REGIONS: RegionData = {
     '서울특별시': [
@@ -60,23 +59,15 @@ const REGIONS: RegionData = {
  * RegionSelector Props
  */
 interface RegionSelectorProps {
-    /** 선택된 시/도 */
     sido: string;
-    /** 선택된 시/군/구 */
     sigungu: string;
-    /** 시/도 변경 핸들러 */
     onSidoChange: (sido: string) => void;
-    /** 시/군/구 변경 핸들러 */
     onSigunguChange: (sigungu: string) => void;
-    /** 추가 CSS 클래스 */
     className?: string;
 }
 
 /**
- * RegionSelector 컴포넌트
- * 
- * 시/도와 시/군/구를 선택하는 드롭다운 셀렉터입니다.
- * 시/도 선택에 따라 시/군/구 옵션이 변경됩니다.
+ * RegionSelector 컴포넌트 - 다크 테마
  */
 export default function RegionSelector({
     sido,
@@ -85,18 +76,22 @@ export default function RegionSelector({
     onSigunguChange,
     className = '',
 }: RegionSelectorProps) {
-    // 시/도 목록
     const sidoList = useMemo(() => Object.keys(REGIONS), []);
 
-    // 선택된 시/도에 따른 시/군/구 목록
     const sigunguList = useMemo(() => {
         return sido ? REGIONS[sido] || [] : [];
     }, [sido]);
 
-    // 시/도 변경 시 시/군/구 초기화
     const handleSidoChange = (newSido: string) => {
         onSidoChange(newSido);
-        onSigunguChange(''); // 시/군/구 초기화
+        onSigunguChange('');
+    };
+
+    const selectStyle = {
+        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239ca3af'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E")`,
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'right 1rem center',
+        backgroundSize: '1.5rem',
     };
 
     return (
@@ -110,13 +105,8 @@ export default function RegionSelector({
                     id="sido-select"
                     value={sido}
                     onChange={(e) => handleSidoChange(e.target.value)}
-                    className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all cursor-pointer appearance-none"
-                    style={{
-                        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239ca3af'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E")`,
-                        backgroundRepeat: 'no-repeat',
-                        backgroundPosition: 'right 1rem center',
-                        backgroundSize: '1.5rem',
-                    }}
+                    className="w-full px-4 py-3 bg-card border border-border rounded-xl text-primary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all cursor-pointer appearance-none"
+                    style={selectStyle}
                     aria-label="시/도 선택"
                 >
                     <option value="">시/도 선택</option>
@@ -138,13 +128,8 @@ export default function RegionSelector({
                     value={sigungu}
                     onChange={(e) => onSigunguChange(e.target.value)}
                     disabled={!sido}
-                    className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all cursor-pointer appearance-none disabled:bg-gray-50 disabled:text-gray-400 disabled:cursor-not-allowed"
-                    style={{
-                        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239ca3af'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E")`,
-                        backgroundRepeat: 'no-repeat',
-                        backgroundPosition: 'right 1rem center',
-                        backgroundSize: '1.5rem',
-                    }}
+                    className="w-full px-4 py-3 bg-card border border-border rounded-xl text-primary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all cursor-pointer appearance-none disabled:opacity-50 disabled:cursor-not-allowed"
+                    style={selectStyle}
                     aria-label="시/군/구 선택"
                 >
                     <option value="">시/군/구 선택</option>
@@ -159,6 +144,5 @@ export default function RegionSelector({
     );
 }
 
-// 지역 데이터 export (다른 곳에서 사용 가능)
 export { REGIONS };
 export type { RegionData };
