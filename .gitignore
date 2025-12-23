@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# Next.js
+.next/
+
+# Environment variables
+.env*.local
+
+# Vercel
+.vercel/
+
+# Logs
+*.log
+
+# macOS
+.DS_Store
