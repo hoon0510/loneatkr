@@ -36,10 +36,16 @@ export default function Header() {
                             홈
                         </Link>
                         <Link
-                            href="/about"
+                            href="/list"
                             className="text-muted hover:text-primary font-medium transition-colors"
                         >
-                            소개
+                            맛집 찾기
+                        </Link>
+                        <Link
+                            href="/group-spots"
+                            className="text-muted hover:text-primary font-medium transition-colors"
+                        >
+                            같이 가기
                         </Link>
                     </div>
 
@@ -89,11 +95,18 @@ export default function Header() {
                                 홈
                             </Link>
                             <Link
-                                href="/about"
+                                href="/list"
                                 className="text-muted hover:text-primary font-medium transition-colors py-2"
                                 onClick={() => setIsMenuOpen(false)}
                             >
-                                소개
+                                맛집 찾기
+                            </Link>
+                            <Link
+                                href="/group-spots"
+                                className="text-muted hover:text-primary font-medium transition-colors py-2"
+                                onClick={() => setIsMenuOpen(false)}
+                            >
+                                같이 가기
                             </Link>
                         </div>
                     </div>
